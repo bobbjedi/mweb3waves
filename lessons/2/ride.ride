@@ -1,0 +1,12 @@
+{-# STDLIB_VERSION 3 #-}
+{-# CONTENT_TYPE DAPP #-}
+{-# SCRIPT_TYPE ACCOUNT #-}
+let senderPk =  base58'5yrxaD5Gf8y9ov2dezbMAw4iUfZG2pwaW3zn86iHvK52'
+@Verifier(tx)
+func verify() = {
+    match tx {
+        case d: SetScriptTransaction => sigVerify(tx.bodyBytes, tx.proofs[0], senderPk)
+        case d: DataTransaction => sigVerify(tx.proofs[0], tx.bodyBytes, senderPk)
+        case _=> false
+    }
+}

@@ -2,8 +2,8 @@
     "name": "mweb3-demo-waves",
     "version": "0.1.0",
     "scripts": {
-        "build": "webpack",
-        "watch": "webpack --watch"
+        "build": "webpack --mode=development",
+        "watch": "webpack --watch --mode=development"
     },
     "dependencies": {
         "@babel/preset-env": "^7.1.0",

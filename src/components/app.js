@@ -13,6 +13,10 @@ class App extends React.Component {
             WavesKeeper.auth( authData )
             .then(auth => {
                 console.log( auth ); //displaying the result on the console
+                this.setState({
+                    isAuth: true,
+                    address: auth.address
+                    });
                 /*...processing data */
             }).catch(error => {
                 console.error( error ); // displaying the result on the console
@@ -23,9 +27,15 @@ class App extends React.Component {
         }
     }
     render() {
+        const {isAuth, address} = this.state;
         return (
             <div className="container">
-    		    <input className="btn btn-primary" type="submit" value="Auth" onClick={this.authFunc}/>
+                {!isAuth 
+                    ?
+                <input className="btn btn-primary" type="submit" value="Auth" onClick={this.authFunc}/>
+                    :
+                <div>You Auth <u>{address}</u>!</div>
+                }
     	    </div>
         )
     }
